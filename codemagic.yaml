@@ -4,7 +4,7 @@ workflows:
     # instance_type: mac_mini
     max_build_duration: 120
     environment:
-       groups:
+      groups:
           - ios
 #       vars:
 #         XCODE_WORKSPACE: "Runner.xcworkspace"
