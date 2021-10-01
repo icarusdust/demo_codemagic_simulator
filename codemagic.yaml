@@ -48,8 +48,8 @@ workflows:
           --export-options-plist=/Users/builder/export_options.plist
       - name: Test building
         script: |
-           flutter build ios 
-           cd $FCI_BUILD_DIR && zip --symlinks -r magic.zip Runner.app
+           flutter build ios
+           cd $FCI_BUILD_DIR && zip --symlinks -r demo_codemagic_simulatorUITest.zip /Users/builder/clone/build/ios/iphoneos/Runner.app
       - name: App upload and Set app id in environment variable.
         script: |      
            APP_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@build/ios/ipa/nihal.ipa" | jq -r '.app_url') 
