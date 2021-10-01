@@ -42,7 +42,7 @@ workflows:
           find . -name "Podfile" -execdir pod install \;
       - name: Testing IOS
         script: |
-          xcodebuild -scheme Runner build-for-testing
+          cd ios && xcodebuild -scheme Runner build-for-testing
       - name: Flutter build ipa and automatic versioning
         script: |
           flutter build ipa --release \
