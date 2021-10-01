@@ -50,7 +50,7 @@ workflows:
         script: |      
            APP_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@build/ios/ipa/nihal.ipa" | jq -r '.app_url') 
            echo $APP_URL
-           TEST_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/xcuitest/test-suite" -F "file=@demo_codemagic_simulator_32_artifacts.zip" | jq -r '.test_url')
+           TEST_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/xcuitest/test-suite" -F "file=@build_outputs/demo_codemagic_simulator_32_artifacts.zip" | jq -r '.test_url')
            echo $TEST_URL
            curl -X POST "https://api-cloud.browserstack.com/app-automate/xcuitest/build" -d "{\"devices\": [\"iPhone 11 Pro-13\"], \"app\": \"bs://<hashed appid>\", \"deviceLogs\" : \"true\", \"testSuite\": \"bs://<hashed testID>\"}" -H "Content-Type: application/json" -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q"    
     artifacts:
