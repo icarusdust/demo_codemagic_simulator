@@ -49,6 +49,8 @@ workflows:
       - name: Test building
         script: |
            flutter build ios
+      - name: Zip Converting
+        script: |
            cd $FCI_BUILD_DIR && zip --symlinks -r demo_codemagic_simulatorUITest.zip /Users/builder/clone/build/ios/iphoneos/Runner.app
       - name: App upload and Set app id in environment variable.
         script: |      
