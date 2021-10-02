@@ -51,6 +51,7 @@ workflows:
            flutter build ios
       - name: Zip Converting
         script: |
+           cd ios
            cd /Users/builder/clone/build/ios/iphoneos/
            zip --symlinks -r demo_codemagic_simulatorUITest.zip Runner.app
       - name: App upload and Set app id in environment variable.
