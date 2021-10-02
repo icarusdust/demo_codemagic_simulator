@@ -51,7 +51,8 @@ workflows:
            flutter build ios
       - name: Zip Converting
         script: |
-           zip --symlinks -r demo_codemagic_simulatorUITest.zip /Users/builder/clone/build/ios/iphoneos/Runner.app
+           cd /Users/builder/clone/build/ios/iphoneos/
+           zip --symlinks -r demo_codemagic_simulatorUITest.zip Runner.app
       - name: App upload and Set app id in environment variable.
         script: |      
            APP_URL=$(curl -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@build/ios/ipa/nihal.ipa" | jq -r '.app_url') 
