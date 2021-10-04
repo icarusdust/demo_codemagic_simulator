@@ -34,8 +34,7 @@ workflows:
         script: |
           xcode-project use-profiles --project=ios/Runner.xcodeproj
       - name: Get Flutter packages
-        script: |
-          cd . && flutter packages pub get
+        script: cd . && flutter packages pub get
         ignore_failure: true          
       - name: Install pods
         script: |
