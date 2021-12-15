@@ -76,5 +76,5 @@ workflows:
               - nihal
         app_store_connect:
           apple_id: nihal@nevercode.com
-          password: 1234-1234-1234-1234
+          password: qwer-qwer-qwer-qwer
 
