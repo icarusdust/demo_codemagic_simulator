@@ -11,7 +11,6 @@ workflows:
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: Runner          
         BUNDLE_ID: com.example.demoCodemagicSimulator # <-- Put your bundle id here dhfkdsf
-        TEST2: "hello world"
       flutter: stable
       xcode: 13.1
       cocoapods: default
@@ -31,7 +30,7 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles --project=ios/Runner.xcodeproj
-          export TEST2 = $TEST
+          export TEST2=$TEST
           echo $TEST2
       - name: Get Flutter packages
         script: |
