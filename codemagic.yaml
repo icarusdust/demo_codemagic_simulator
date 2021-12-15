@@ -75,6 +75,6 @@ workflows:
             groups: # Add one or more groups that you wish to distribute your iOS application to, you can create groups in the Firebase console
               - nihal
         app_store_connect:
-          apple_id: email@domain.com
-          password: 3hidf93923-dsdsdsds-2323232
+          apple_id: nihal@nevercode.com
+          password: 1234-1234-1234-1234
 
