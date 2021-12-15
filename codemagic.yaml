@@ -76,6 +76,5 @@ workflows:
               - nihal
         app_store_connect:
           apple_id: email@domain.com
-          password: 'Hkljsfj92'
 
 
