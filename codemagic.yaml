@@ -31,7 +31,8 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles --project=ios/Runner.xcodeproj
-          echo $TEST
+          TEST2 = $TEST
+          echo $TEST2
       - name: Get Flutter packages
         script: |
           cd . && flutter packages pub get
