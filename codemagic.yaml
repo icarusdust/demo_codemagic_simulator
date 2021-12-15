@@ -7,6 +7,7 @@ workflows:
       groups:
           - firebase
           - ios_creds
+        
       vars:
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: Runner          
@@ -30,6 +31,7 @@ workflows:
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles --project=ios/Runner.xcodeproj
+          echo $TEST
       - name: Get Flutter packages
         script: |
           cd . && flutter packages pub get
