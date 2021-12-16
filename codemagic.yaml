@@ -8,6 +8,7 @@ workflows:
           - firebase
           - ios_creds       
       vars:
+        TEST2: $TEST
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: Runner          
         BUNDLE_ID: com.example.demoCodemagicSimulator # <-- Put your bundle id here dhfkdsf
@@ -21,7 +22,6 @@ workflows:
       - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
         script: |
           keychain initialize
-          export TEST2=$TEST
           echo $TEST2
       - name: Fetch signing files
         script: |
