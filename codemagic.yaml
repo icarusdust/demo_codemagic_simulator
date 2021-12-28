@@ -45,9 +45,6 @@ workflows:
           --build-name=1.0.0 \
           --build-number=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_ID") + 1)) \
           --export-options-plist=/Users/builder/export_options.plist
-      - name: Unzipping
-        script: |
-          unzip demo_codemagic_simulator_82_artifacts.zip
 #       - name: Test building
 #         script: |
 #            flutter build ios
@@ -70,7 +67,7 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log 
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+      - ls $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
       
     publishing:
         firebase:
