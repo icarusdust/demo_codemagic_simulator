@@ -45,18 +45,21 @@ workflows:
           --build-name=1.0.0 \
           --build-number=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_ID") + 1)) \
           --export-options-plist=/Users/builder/export_options.plist
-      - name: Firebase Crashlitics
+      - name: DSYM path
         script: |
-            echo "Find build artifacts"
-            dsymPath=$(find $FCI_BUILD_DIR/build/ios/archive/Runner.xcarchive $FCI_BUILD_DIR/build/ios/xcarchive/Runner.xcarchive -name "*.dSYM.zip" | head -1)
-            if [[ -z ${dsymPath} ]]
-            then
-              echo "No debug symbols were found, skip publishing to Firebase Crashlytics"
-            else
-              echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
-              ls -d -- ios/Pods/*
-              $FCI_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols -gsp ios/Runner/GoogleService-Info.plist -p ios $dsymPath
-            fi
+          ls $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+#       - name: Firebase Crashlitics
+#         script: |
+#             echo "Find build artifacts"
+#             dsymPath=$(find $FCI_BUILD_DIR/build/ios/archive/Runner.xcarchive $FCI_BUILD_DIR/build/ios/xcarchive/Runner.xcarchive -name "*.dSYM.zip" | head -1)
+#             if [[ -z ${dsymPath} ]]
+#             then
+#               echo "No debug symbols were found, skip publishing to Firebase Crashlytics"
+#             else
+#               echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
+#               ls -d -- ios/Pods/*
+#               $FCI_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols -gsp ios/Runner/GoogleService-Info.plist -p ios $dsymPath
+#             fi
 #       - name: Test building
 #         script: |
 #            flutter build ios
@@ -76,10 +79,10 @@ workflows:
 #           curl -X POST "https://api-cloud.browserstack.com/app-automate/xcuitest/build" -d "{\"devices\": [\"iPhone 11 Pro-13\"], "app": ""'"$APP_URL"'"", \"deviceLogs\" : \"true\", "testSuite": "'"$TEST_URL"'"}" -H "Content-Type: application/json" -u "nihalagazade_JxPH1i:4y5LkQnzzGkv2s7ERZ4q"    
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log 
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+#       - /tmp/xcodebuild_logs/*.log
+#       - flutter_drive.log 
+#       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+#       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
       
     publishing:
         firebase:
