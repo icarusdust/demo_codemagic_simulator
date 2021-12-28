@@ -47,7 +47,7 @@ workflows:
           --export-options-plist=/Users/builder/export_options.plist
       - name: DSYM path
         script: |
-          ls $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+          ls $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM.zip
 #       - name: Firebase Crashlitics
 #         script: |
 #             echo "Find build artifacts"
