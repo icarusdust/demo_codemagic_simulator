@@ -45,9 +45,18 @@ workflows:
           --build-name=1.0.0 \
           --build-number=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_ID") + 1)) \
           --export-options-plist=/Users/builder/export_options.plist
-      - name: TEST
+      - name: Firebase Crashlitics
         script: |
-            ls $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+            echo "Find build artifacts"
+            dsymPath=$(find $FCI_BUILD_DIR/build/ios/archive/Runner.xcarchive $FCI_BUILD_DIR/build/ios/xcarchive/Runner.xcarchive -name "*.dSYM.zip" | head -1)
+            if [[ -z ${dsymPath} ]]
+            then
+              echo "No debug symbols were found, skip publishing to Firebase Crashlytics"
+            else
+              echo "Publishing debug symbols from $dsymPath to Firebase Crashlytics"
+              ls -d -- ios/Pods/*
+              $FCI_BUILD_DIR/ios/Pods/FirebaseCrashlytics/upload-symbols -gsp ios/Runner/GoogleService-Info.plist -p ios $dsymPath
+            fi
 #       - name: Test building
 #         script: |
 #            flutter build ios
