@@ -25,7 +25,7 @@ workflows:
           echo $TEST2
       - name: Fetch signing files
         script: |
-          app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_ADHOC --create --version
+          app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_ADHOC --version --create
       - name: Use system default keychain
         script: |
           keychain add-certificates
